@@ -4,3 +4,7 @@
 *.lock
 *.log
 dist
+.dev.vars*
+.env*
+.wrangler/
+*.local.toml
