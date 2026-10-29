@@ -1,11 +1,11 @@
-name = "cf-worker-ws-dev-0415" # todo
-#name = "cf-worker-connect-test" # todo
-#main = "test/worker/cf-cdn-cgi-trace2.js"
+name = "personal-cloudflare-proxy"
+main = "src/personal-entry.mjs"
+compatibility_date = "2026-10-30"
+workers_dev = true
 
-#main = "test/worker/worker-connect-test.js"
-main = "src/worker-vless.js"
+[observability]
+enabled = false
 
-compatibility_date = "2024-04-15"
-
-[vars]
-# UUID = "example_dev_token"
+# Configure UUID as a Secret in Cloudflare; never put it into this file.
+# PROXYIP is optional: only use an endpoint you trust. No public fallback is bundled.
+# This initial profile does not implement an ISP SOCKS5/HTTP chain.
