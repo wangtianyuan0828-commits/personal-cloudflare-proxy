@@ -1,10 +1,15 @@
 name = "personal-cloudflare-proxy"
+account_id = "daea43b93dbeed8bbc0f735c15a8d5ee"
 main = "src/personal-entry.mjs"
 compatibility_date = "2026-10-01"
 workers_dev = true
+routes = [
+  { pattern = "zaileung.work", custom_domain = true },
+  { pattern = "vpn.zaileung.work", custom_domain = true }
+]
 
 [observability]
-enabled = false
+enabled = true
 
 # Configure UUID as a Secret in Cloudflare; never put it into this file.
 # PROXYIP is optional: only use an endpoint you trust. No public fallback is bundled.
