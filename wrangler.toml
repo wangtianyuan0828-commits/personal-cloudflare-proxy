@@ -1,6 +1,6 @@
 name = "personal-cloudflare-proxy"
 main = "src/personal-entry.mjs"
-compatibility_date = "2026-10-30"
+compatibility_date = "2026-10-01"
 workers_dev = true
 
 [observability]
