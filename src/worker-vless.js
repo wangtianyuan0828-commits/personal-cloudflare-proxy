@@ -2,6 +2,9 @@
 // @ts-ignore
 import { connect } from 'cloudflare:sockets';
 
+// Personal profile: do not persist destinations, credentials or exception details.
+const console = Object.freeze({ log() {}, error() {}, warn() {} });
+
 // How to generate your own UUID:
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
 let userID = 'd342d11e-d424-4583-b36e-524ab1f0afa4';
@@ -24,7 +27,7 @@ export default {
 		try {
 			userID = env.UUID || userID;
 			proxyIP = env.PROXYIP || proxyIP;
-			const upgradeHeader = request.headers.get('Upgrade');
+			const upgradeHeader = request.headers.get('Upgrade')?.toLowerCase();
 			if (!upgradeHeader || upgradeHeader !== 'websocket') {
 				const url = new URL(request.url);
 				switch (url.pathname) {
@@ -136,7 +139,7 @@ async function vlessOverWSHandler(request) {
 				udpStreamWrite(rawClientData);
 				return;
 			}
-			handleTCPOutBound(remoteSocketWapper, addressRemote, portRemote, rawClientData, webSocket, vlessResponseHeader, log);
+			await handleTCPOutBound(remoteSocketWapper, addressRemote, portRemote, rawClientData, webSocket, vlessResponseHeader, log);
 		},
 		close() {
 			log(`readableWebSocketStream is close`);
